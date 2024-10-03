@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use super::*;
 use std::fmt::Display;
 use std::str::FromStr;
@@ -5,7 +7,7 @@ use std::str::FromStr;
 /// A helper struct to store the separator (delimiter) characters used to parse this message.
 /// Note that HL7 allows each _message_ to define it's own separators, although most messages
 /// use a default set (available from [`Separators::default()`])
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone, Copy)]
 pub struct Separators {
     /// constant value, spec fixed to '\r' (ASCII 13, 0x0D)
     pub segment: char,
@@ -22,7 +24,7 @@ pub struct Separators {
 }
 
 impl Default for Separators {
-	/// Create a Separator with the default (most common) HL7 values
+    /// Create a Separator with the default (most common) HL7 values
     fn default() -> Separators {
         Separators {
             segment: '\r',
@@ -36,7 +38,6 @@ impl Default for Separators {
 }
 
 impl Separators {
-
     // Create a Separators with the values provided in the message.
     // This assumes the message starts with `MSH|^~\&|` or equiv for custom Separators
     fn new(message: &str) -> Result<Separators, Hl7ParseError> {

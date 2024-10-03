@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use super::segments::Segment;
 use super::separators::Separators;
 use super::*;
@@ -21,7 +23,7 @@ use std::ops::Index;
 /// # Ok(())
 /// # }
 /// ```
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Message<'a> {
     source: &'a str,
     pub segments: Vec<Segment<'a>>,

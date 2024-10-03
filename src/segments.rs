@@ -1,9 +1,11 @@
+use serde::{Deserialize, Serialize};
+
 use crate::{Field, Hl7ParseError, Separators};
 use std::fmt::Display;
 use std::ops::Index;
 
 /// A generic bag o' fields, representing an arbitrary segment.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Segment<'a> {
     pub source: &'a str,
     delim: char,

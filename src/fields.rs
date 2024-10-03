@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use super::separators::Separators;
 use super::*;
 use std::fmt::Display;
@@ -5,7 +7,7 @@ use std::ops::Index;
 
 /// Represents a single field inside the HL7.  Note that fields can include repeats, components and sub-components.
 /// See [the spec](http://www.hl7.eu/HL7v2x/v251/std251/ch02.html#Heading13) for more info
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Field<'a> {
     pub source: &'a str,
     delims: Separators,

@@ -11,14 +11,15 @@ repository = "https://github.com/wokket/rust-hl7/"
 string_index = []
 
 [lib]
-name="rusthl7"
-path="src/lib.rs"
+name = "rusthl7"
+path = "src/lib.rs"
 
 [dependencies]
 hex = "0.4"
 log = "0.4"
 regex = "1.5"
 thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
 
 [dev-dependencies]
 criterion = "0.5"
